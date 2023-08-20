@@ -13,7 +13,7 @@ def load_file(filename):
         return json.load(f)
 
 
-def get_executed(operation_list:list[dict]):
+def get_executed(operation_list: list[dict]):
     '''
     Поулчаем список ВЫПОЛНЕННЫХ операций
     :param operation_list: список словарей с данными об операции
@@ -24,7 +24,7 @@ def get_executed(operation_list:list[dict]):
         Operation(
             op["date"],
             op["description"],
-            op["from"],
+            op.get("from", None),
             op["to"],
             op["operationAmount"]["amount"],
             op["operationAmount"]["currency"]["name"]
@@ -33,11 +33,10 @@ def get_executed(operation_list:list[dict]):
     ]
 
 
-def get_sorted_operations(operation_list:list[Operation]):
+def get_sorted_operations(operation_list: list[Operation]):
     '''
 
     :param operation_list: список элементов класса Operation
     :return: отсортированный список по дате
     '''
     return sorted(operation_list, key=lambda op: op.get_datetime(), reverse=True)
-
