@@ -30,6 +30,9 @@ class Operation():
             return f'Счет **{number[-4:]}'
 
     def get_from(self):
+        if self.op_from is None:
+            return "Нет данных"
+
         return Operation._get_from(self.op_from)
 
     def get_to(self):
@@ -40,4 +43,3 @@ class Operation():
 
     def get_datetime(self):
         return self.date
-
